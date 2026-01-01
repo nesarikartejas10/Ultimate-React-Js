@@ -3,6 +3,7 @@ import { useState } from "react";
 const CreateTodo = () => {
   const [tasks, setTasks] = useState(0);
   const [input, setInput] = useState("");
+  const [todos, setTodos] = useState(["Todo1", "Todo2", "Todo3"]);
 
   const hideButton = false;
   const countTasks = () => {
@@ -24,6 +25,11 @@ const CreateTodo = () => {
         Add Task
       </button>
       <h2>{input}</h2>
+      <ul style={{ listStyle: "none" }}>
+        {todos.map((todo) => (
+          <li key={todo}>{todo}</li>
+        ))}
+      </ul>
     </>
   );
 };
