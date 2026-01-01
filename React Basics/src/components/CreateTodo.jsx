@@ -1,13 +1,15 @@
+import { useState } from "react";
+
 const CreateTodo = () => {
-  let tasks = 0;
+  const [tasks, setTasks] = useState(0);
+
   const hideButton = false;
   const countTasks = () => {
     return tasks === 0 ? "No task available" : `Tasks: ${tasks}`;
   };
 
   const handleClick = () => {
-    tasks++;
-    console.log("Add task:", tasks);
+    setTasks(tasks + 1);
   };
   return (
     <>
