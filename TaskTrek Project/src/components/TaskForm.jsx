@@ -13,10 +13,10 @@ export default function Taskform() {
 
         <div className="task_form_bottom_line">
           <div>
-            <Tag />
-            <Tag />
-            <Tag />
-            <Tag />
+            <Tag tagName="HTML" />
+            <Tag tagName="CSS" />
+            <Tag tagName="JavaScript" />
+            <Tag tagName="React" />
           </div>
 
           <div>
