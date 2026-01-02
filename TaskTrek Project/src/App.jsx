@@ -1,14 +1,18 @@
 import "./App.css";
+import TaskColumn from "./components/TaskColumn";
 import Taskform from "./components/TaskForm";
+import Todo from "./assets/direct-hit.png";
+import Doing from "./assets/glowing-star.png";
+import Done from "./assets/check-mark-button.png";
 
 export default function App() {
   return (
     <div className="app">
       <Taskform />
       <main className="app_main">
-        <section className="task_column">section 1</section>
-        <section className="task_column">section 2</section>
-        <section className="task_column">section 3</section>
+        <TaskColumn title="To do" icon={Todo} />
+        <TaskColumn title="Doing" icon={Doing} />
+        <TaskColumn title="Done" icon={Done} />
       </main>
     </div>
   );

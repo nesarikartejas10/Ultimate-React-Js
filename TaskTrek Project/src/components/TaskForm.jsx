@@ -21,7 +21,7 @@ export default function Taskform() {
 
           <div>
             <select className="task_status">
-              <option value="todo">To Do</option>
+              <option value="todo">To do</option>
               <option value="doing">Doing</option>
               <option value="done">Done</option>
             </select>
