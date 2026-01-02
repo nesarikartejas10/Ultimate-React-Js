@@ -1,4 +1,5 @@
 import "../styles/TaskColumn.css";
+import TaskCard from "./TaskCard";
 
 export default function TaskColumn({ title, icon }) {
   return (
@@ -7,6 +8,8 @@ export default function TaskColumn({ title, icon }) {
         <img className="task_column_icon" src={icon} alt={title} />
         {title}
       </h2>
+
+      <TaskCard />
     </section>
   );
 }
