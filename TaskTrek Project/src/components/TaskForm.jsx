@@ -3,27 +3,34 @@ import "../styles/TaskForm.css";
 import Tag from "./Tag";
 
 export default function Taskform() {
-  const [task, setTask] = useState("");
-  const [status, setStatus] = useState("todo");
+  const [taskData, setTaskData] = useState({
+    task: "",
+    status: "todo",
+  });
 
-  const handleTaskChange = (e) => {
-    setTask(e.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setTaskData((prevTaskData) => {
+      return { ...prevTaskData, [name]: value };
+    });
   };
 
-  const handleStatusChange = (e) => {
-    setStatus(e.target.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(taskData);
   };
 
-  console.log(task, status);
   return (
     <header className="app_header">
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           className="task_input"
+          name="task"
           placeholder="Enter your task"
-          value={task}
-          onChange={handleTaskChange}
+          value={taskData.task}
+          onChange={handleChange}
         />
 
         <div className="task_form_bottom_line">
@@ -35,7 +42,12 @@ export default function Taskform() {
           </div>
 
           <div>
-            <select className="task_status" onChange={handleStatusChange}>
+            <select
+              className="task_status"
+              name="status"
+              value={taskData.status}
+              onChange={handleChange}
+            >
               <option value="todo">To do</option>
               <option value="doing">Doing</option>
               <option value="done">Done</option>
