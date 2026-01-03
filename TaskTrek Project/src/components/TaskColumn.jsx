@@ -1,4 +1,6 @@
+import React from "react";
 import "../styles/TaskColumn.css";
+import DropArea from "./DropArea";
 import TaskCard from "./TaskCard";
 
 export default function TaskColumn({
@@ -7,6 +9,8 @@ export default function TaskColumn({
   tasks,
   status,
   handleDelete,
+  setActiceCard,
+  onDrop,
 }) {
   return (
     <section className="task_column">
@@ -14,17 +18,20 @@ export default function TaskColumn({
         <img className="task_column_icon" src={icon} alt={title} />
         {title}
       </h2>
-
+      <DropArea onDrop={() => onDrop(status, 0)} />
       {tasks.map(
         (task, index) =>
           task.status === status && (
-            <TaskCard
-              key={index}
-              title={task.task}
-              tags={task.tags}
-              handleDelete={handleDelete}
-              index={index}
-            />
+            <React.Fragment key={index}>
+              <TaskCard
+                title={task.task}
+                tags={task.tags}
+                handleDelete={handleDelete}
+                index={index}
+                setActiceCard={setActiceCard}
+              />
+              <DropArea onDrop={() => onDrop(status, index + 1)} />
+            </React.Fragment>
           )
       )}
     </section>
