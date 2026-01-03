@@ -9,6 +9,10 @@ export default function Taskform() {
     tags: [],
   });
 
+  const checkTag = (tag) => {
+    return taskData.tags.some((item) => item === tag);
+  };
+
   const selectTag = (tag) => {
     if (taskData.tags.some((item) => item === tag)) {
       const filteredTags = taskData.tags.filter((item) => item !== tag);
@@ -51,10 +55,26 @@ export default function Taskform() {
 
         <div className="task_form_bottom_line">
           <div>
-            <Tag tagName="HTML" selectTag={selectTag} />
-            <Tag tagName="CSS" selectTag={selectTag} />
-            <Tag tagName="JavaScript" selectTag={selectTag} />
-            <Tag tagName="React" selectTag={selectTag} />
+            <Tag
+              tagName="HTML"
+              selectTag={selectTag}
+              isSelected={checkTag("HTML")}
+            />
+            <Tag
+              tagName="CSS"
+              selectTag={selectTag}
+              isSelected={checkTag("CSS")}
+            />
+            <Tag
+              tagName="JavaScript"
+              selectTag={selectTag}
+              isSelected={checkTag("JavaScript")}
+            />
+            <Tag
+              tagName="React"
+              selectTag={selectTag}
+              isSelected={checkTag("React")}
+            />
           </div>
 
           <div>
