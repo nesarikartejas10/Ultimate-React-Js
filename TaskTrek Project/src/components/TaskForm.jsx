@@ -6,7 +6,21 @@ export default function Taskform() {
   const [taskData, setTaskData] = useState({
     task: "",
     status: "todo",
+    tags: [],
   });
+
+  const selectTag = (tag) => {
+    if (taskData.tags.some((item) => item === tag)) {
+      const filteredTags = taskData.tags.filter((item) => item !== tag);
+      setTaskData((prevTaskData) => {
+        return { ...prevTaskData, tags: filteredTags };
+      });
+    } else {
+      setTaskData((prevTaskData) => {
+        return { ...prevTaskData, tags: [...prevTaskData.tags, tag] };
+      });
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,6 +34,8 @@ export default function Taskform() {
     e.preventDefault();
     console.log(taskData);
   };
+
+  console.log(taskData.tags);
 
   return (
     <header className="app_header">
@@ -35,10 +51,10 @@ export default function Taskform() {
 
         <div className="task_form_bottom_line">
           <div>
-            <Tag tagName="HTML" />
-            <Tag tagName="CSS" />
-            <Tag tagName="JavaScript" />
-            <Tag tagName="React" />
+            <Tag tagName="HTML" selectTag={selectTag} />
+            <Tag tagName="CSS" selectTag={selectTag} />
+            <Tag tagName="JavaScript" selectTag={selectTag} />
+            <Tag tagName="React" selectTag={selectTag} />
           </div>
 
           <div>
