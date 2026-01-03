@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../styles/TaskForm.css";
 import Tag from "./Tag";
 
-export default function Taskform() {
+export default function TaskForm({ setTasks }) {
   const [taskData, setTaskData] = useState({
     task: "",
     status: "todo",
@@ -36,10 +36,12 @@ export default function Taskform() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(taskData);
-  };
+    setTasks((prevTasks) => {
+      return [...prevTasks, taskData];
+    });
 
-  console.log(taskData.tags);
+    setTaskData({ task: "", status: "todo", tags: [] });
+  };
 
   return (
     <header className="app_header">
