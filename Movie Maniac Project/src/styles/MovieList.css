@@ -1,4 +1,4 @@
-.movie_list {
+.movie_list_header {
   padding: 10px 30px;
   display: flex;
   align-items: center;
@@ -45,4 +45,10 @@
   height: 30px;
   padding: 0 5px;
   margin: 0 10px;
+}
+
+.movie_cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
