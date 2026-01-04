@@ -2,6 +2,7 @@ import "../styles/MovieList.css";
 import Fire from "../assets/fire.png";
 import MovieCard from "./MovieCard";
 import { useEffect, useState } from "react";
+import MovieGroup from "./MovieGroup";
 
 export default function MovieList() {
   const [movies, setMovies] = useState([]);
@@ -46,32 +47,11 @@ export default function MovieList() {
         </h2>
 
         <div className="movie_list_fs">
-          <ul className="movie_filter">
-            <li
-              className={
-                rating === 8 ? "movie_filter_item active" : "movie_filter_item"
-              }
-              onClick={() => handleFilter(8)}
-            >
-              8+ Star
-            </li>
-            <li
-              className={
-                rating === 7 ? "movie_filter_item active" : "movie_filter_item"
-              }
-              onClick={() => handleFilter(7)}
-            >
-              7+ Star
-            </li>
-            <li
-              className={
-                rating === 6 ? "movie_filter_item active" : "movie_filter_item"
-              }
-              onClick={() => handleFilter(6)}
-            >
-              6+ Star
-            </li>
-          </ul>
+          <MovieGroup
+            rating={rating}
+            onRatingClick={handleFilter}
+            ratings={[8, 7, 6]}
+          />
 
           <select name="" className="movie_sort">
             <option value="">Sort By</option>
