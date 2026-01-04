@@ -1,9 +1,10 @@
 import "../styles/MovieList.css";
 import Fire from "../assets/fire.png";
 import MovieCard from "./MovieCard";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function MovieList() {
+  const [movies, setMovies] = useState([]);
   useEffect(() => {
     try {
       fetchMovies();
@@ -18,7 +19,7 @@ export default function MovieList() {
     );
 
     const data = await response.json();
-    console.log(data);
+    setMovies(data.results);
   };
 
   return (
@@ -49,7 +50,9 @@ export default function MovieList() {
       </header>
 
       <div className="movie_cards">
-        <MovieCard />
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
       </div>
     </section>
   );
