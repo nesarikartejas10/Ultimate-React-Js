@@ -15,4 +15,10 @@
 
 .nav_list a {
   text-decoration: none;
+  color: #f0f0f0;
+}
+
+.nav_list a.active {
+  color: blue;
+  font-weight: 600;
 }
