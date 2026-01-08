@@ -1,7 +1,7 @@
 function Navbar() {
   return (
-    <nav>
-      <ul>
+    <nav className="navbar">
+      <ul className="nav_list">
         <li>
           <a href="/">Home</a>
         </li>
