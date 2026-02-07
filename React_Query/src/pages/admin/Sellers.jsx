@@ -28,12 +28,22 @@ const Sellers = () => {
       id: sellers.length + 1,
     };
 
-    setSellers([newSeller, ...sellers]);
+    setSellers((prevSellers) => [newSeller, ...prevSellers]);
     setSellerInput("");
 
     axios
       .post("https://jsonplaceholder.typicode.com/users", newSeller)
       .then((res) => setSellers([res.data, ...sellers]))
+      .catch((error) => {
+        setError(error.message);
+        setSellers(sellers);
+      });
+  };
+
+  const deleteSeller = (id) => {
+    setSellers(sellers.filter((seller) => seller.id !== id));
+    axios
+      .delete(`https://jsonplaceholder.typicode.com/users/${id}`)
       .catch((error) => {
         setError(error.message);
         setSellers(sellers);
@@ -54,9 +64,20 @@ const Sellers = () => {
       </div>
       {loading && <Loader />}
       {error && <em style={{ color: "coral" }}>{error}!!</em>}
-      {sellers.map((seller) => {
-        return <p key={seller.id}>{seller.name}</p>;
-      })}
+      <table>
+        {sellers.map((seller) => {
+          return (
+            <tr>
+              <td>
+                <p key={seller.id}>{seller.name}</p>
+              </td>
+              <td>
+                <button onClick={() => deleteSeller(seller.id)}>Delete</button>
+              </td>
+            </tr>
+          );
+        })}
+      </table>
     </>
   );
 };
